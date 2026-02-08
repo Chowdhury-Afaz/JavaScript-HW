@@ -13,8 +13,11 @@ function openPopup(event){
     }
 
 function closePopup(event){
-
+    console.log(event)
+    let targetEle = event.target
+    if(targetEle.classList.contains('popup') || targetEle.classList.contains('cancelBtn') || event.key == 'Escape'){
     popup.classList.remove('show')
+    }
 }
 
 images.forEach(image =>{
@@ -22,6 +25,8 @@ images.forEach(image =>{
 })
 
 cancelBtn.addEventListener('click', closePopup)
+popup.addEventListener('click', closePopup)
+window.addEventListener('keyup', closePopup)
 
 let num = prompt('Enter Number')
 
@@ -30,3 +35,20 @@ for(let a = 1; a <= num; a++){
         console.log(`${a} * ${b} = ${a * b}`)
     }
 }
+
+
+let cursor = document.querySelector('.cursor')
+let cursorSm = document.querySelector('.cursor-sm')
+
+function mouseMove(event) {
+    let left = event.pageX
+    let top = event.pageY
+
+    cursor.style.top = top +'px'
+    cursor.style.left = left +'px'
+    cursorSm.style.top = top +'px'
+    cursorSm.style.left = left +'px'
+    
+}
+
+window.addEventListener('mousemove', mouseMove)
